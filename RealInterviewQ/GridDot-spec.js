@@ -1,3 +1,5 @@
+// Q from: Whiteboard interview
+
 const expect = require('expect.js');
 
 // There is a Table with Red/Back dot and I need to find the number of red dot.
@@ -247,7 +249,7 @@ describe('table Red-Black dot grouping interview Q.', () => {
   
   describe.skip('MassivetableTest', () => {
     // To test if Recursion or loop is better in this case?
-    // Conclusion: Even with proper tail call in recursion we still have memory issue and max stack size.
+    // Conclusion: The Proper tail call in recursion was remove from ES6 in Node & most browser. Therefor we still have memory issue and max stack size.
     // Loop is therefor better in this case
 
     beforeEach(() => {
