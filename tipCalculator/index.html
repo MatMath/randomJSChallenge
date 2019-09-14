@@ -1,0 +1,65 @@
+<!-- 
+  The US is the most backward country in the world when we tip. We have to pay, then mentally calculate the Tip & write the number on a piece of paper.
+  After we HOPE the waiteress will write the proper amount so we get charged. To avoid fraud we have to Keep the 1995 piece of paper and double check with it 5-10 day after.
+  So: To check fraud fast I want to tip between 15 & 20% but with the Integer & decimal reverse: so 83.38 or 84.48 etc... so if it is different I know something was wrong.
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Tip</title>
+</head>
+<body>
+  <h1>Input final amount</h1>
+  <input type="number" id="cost">
+  <button class="click-me" title="Calculate">Calculate</button>
+  <div id="resultList"></div>
+</body>
+<script type="text/javascript">
+  const nbrReverse = (str) => Math.floor(parseFloat(`${str}.${str.split('').reverse().join('')}`)*100)/100; 
+
+  const getArrayOfValue = (input) => {
+    const val15pc = Math.round(input*1.15*100)/100;
+    const val20pc = Math.round(input*1.2*100)/100;
+    const min = parseInt(val15pc, 10);
+    const max = parseInt(val20pc, 10);
+    
+    const list = [];
+    for (let i = 0; i < max-min; i++) {
+      list.push(nbrReverse(`${min+i}`));
+    }
+    return list;
+  };
+
+  const createKeyValue = (value, list) => list.map(item => ({tip: Math.round(item*100-value*100)/100, total:item, pc: Math.round((item/value - 1)*1000)/10}));
+
+  document.addEventListener('click', function (event) {
+  // If the clicked element doesn't have the right selector, bail
+  if (!event.target.matches('.click-me')) return;
+  event.preventDefault();
+
+  // Log the clicked element in the console
+  const value = parseFloat(document.getElementById('cost').value);
+    
+  // Too small to be usefull
+  if (value < 10) { return; }
+  const list = getArrayOfValue(value);
+  const keyValueList = createKeyValue(value, list);
+  
+  var listDisplay = document.createElement('ul');
+  keyValueList.forEach((item) => {
+    let li = document.createElement('li');
+    li.textContent = `${item.pc}% - Tip: ${item.tip}  -  Total: ${item.total}`;
+    listDisplay.appendChild(li);
+  });
+
+  var resultList = document.querySelector('#resultList');
+  resultList.appendChild(listDisplay);
+
+
+  }, false);
+</script>
+</html>
+
