@@ -4,7 +4,7 @@
   "description": "The best way to learn is to challenge yourself.",
   "main": "lessThanOneHourChallenge-spec.js",
   "dependencies": {
-    "bl": "^1.1.2",
+    "bl": "^1.2.3",
     "es6-promise": "^3.2.1",
     "node-static": "^0.7.10",
     "q-fs": "^0.1.36",
