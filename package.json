@@ -19,7 +19,7 @@
     "eslint-plugin-mocha": "^4.11.0",
     "expect": "^21.1.0",
     "expect.js": "^0.3.1",
-    "mocha": "^6.0.2",
+    "mocha": "^10.2.0",
     "nyc": "^13.3.0",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.3"
